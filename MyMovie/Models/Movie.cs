@@ -21,5 +21,8 @@ namespace MyMovie.Models
         public virtual ICollection<Star> Stars { get; set; }
 
         public virtual ICollection<Rating> Rating { get; set; }
+
+        public int TypeId { get; set; }
+        public virtual ShowType ShowType { get; set; }
     }
 }

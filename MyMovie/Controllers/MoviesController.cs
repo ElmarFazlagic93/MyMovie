@@ -33,6 +33,14 @@ namespace MyMovie.Controllers
             return Ok(movie);
         }
 
+        // GET: api/Movies/ByType/
+        [ResponseType(typeof(IQueryable<Movie>))]
+        [Route("api/Movies/ByType/{typeId}")]
+        public IQueryable<Movie> GetMoviebyType(int typeId)
+        {
+            return db.Movies.Where(x => x.TypeId == typeId).Include(r => r.Rating).Include(s => s.Stars);
+        }
+
         // PUT: api/Movies/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutMovie(int id, Movie movie)

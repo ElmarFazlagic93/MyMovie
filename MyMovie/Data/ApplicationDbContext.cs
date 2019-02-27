@@ -18,5 +18,6 @@ namespace MyMovie.Data
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Star> Stars { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<ShowType> ShowTypes { get; set; }
     }
 }

@@ -200,10 +200,19 @@
     <Compile Include="Migrations\201902270226210_ChangeDBC.Designer.cs">
       <DependentUpon>201902270226210_ChangeDBC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902272141423_AddType1.cs" />
+    <Compile Include="Migrations\201902272141423_AddType1.Designer.cs">
+      <DependentUpon>201902272141423_AddType1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902272148470_AddType12.cs" />
+    <Compile Include="Migrations\201902272148470_AddType12.Designer.cs">
+      <DependentUpon>201902272148470_AddType12.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Star.cs" />
+    <Compile Include="Models\ShowType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +246,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902270226210_ChangeDBC.resx">
       <DependentUpon>201902270226210_ChangeDBC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272141423_AddType1.resx">
+      <DependentUpon>201902272141423_AddType1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902272148470_AddType12.resx">
+      <DependentUpon>201902272148470_AddType12.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
