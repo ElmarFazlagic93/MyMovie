@@ -83,6 +83,23 @@ namespace MyMovie.Controllers
             return CreatedAtRoute("DefaultApi", new { id = rating.Id }, rating);
         }
 
+        // POST: api/Movies/PostRating?rateNumber={rateNumber}/movieId={movieId}
+        //[ResponseType(typeof(Rating))]
+        //[Route("api/Movies/PostRating")]
+        //[HttpPost]
+        //public async Task<IHttpActionResult> PostRating(Rating rating)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    //Rating rating = new Rating { RateNumber = rateNumber, MovieId = movieId };
+        //    db.Ratings.Add(rating);
+        //    await db.SaveChangesAsync();
+
+        //    return Ok(rating);
+        //}
+
         // DELETE: api/Ratings/5
         [ResponseType(typeof(Rating))]
         public async Task<IHttpActionResult> DeleteRating(int id)

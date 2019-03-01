@@ -1,5 +1,6 @@
 ﻿using MyMovie.Data;
 using MyMovie.Models;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -39,6 +40,33 @@ namespace MyMovie.Controllers
         public IQueryable<Movie> GetMoviebyType(int typeId)
         {
             return db.Movies.Where(x => x.TypeId == typeId).Include(r => r.Rating).Include(s => s.Stars);
+        }
+
+        // GET: api/Movies/getAverageRating/5
+        [ResponseType(typeof(double))]
+        [Route("api/Movies/GetAverageRating/{movieId}")]
+        public double GetAverageRating(int movieId)
+        {
+            Movie movie = db.Movies.FirstOrDefault(x => x.Id == movieId);
+            List<Rating> ratings = new List<Rating>();
+            ratings = movie.Rating.ToList();
+            double sum = 0;
+
+            foreach (var rating in ratings)
+            {
+                sum += rating.RateNumber;
+            }
+
+            return double.Parse((sum / ratings.Count).ToString());
+        }
+
+        // GET: api/Movies/Search/{searchText}
+        [ResponseType(typeof(IQueryable<Movie>))]
+        [Route("api/Movies/SearchMovies/{searchText}")]
+        [HttpGet]
+        public IQueryable<Movie> SearchMovies(string searchText)
+        {
+            return db.Movies.Where(x => x.Name.Contains(searchText)).Include(r => r.Rating).Include(s => s.Stars);
         }
 
         // PUT: api/Movies/5
