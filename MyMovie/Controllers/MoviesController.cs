@@ -1,4 +1,5 @@
 ﻿using MyMovie.Data;
+using MyMovie.Helper;
 using MyMovie.Models;
 using System;
 using System.Collections.Generic;
@@ -103,10 +104,10 @@ namespace MyMovie.Controllers
         }
 
         // GET: api/Movies/Search/{searchText}
-        [ResponseType(typeof(IQueryable<Movie>))]
-        [Route("api/Movies/SearchMovies/{searchText}")]
+        [ResponseType(typeof(PagedData<Movie>))]
+        [Route("api/Movies/SearchMovies/{searchText}/{pageNumber}/{pageSize}")]
         [HttpGet]
-        public IQueryable<Movie> SearchMovies(string searchText)
+        public PagedData<Movie> SearchMovies(string searchText, int pageNumber = 1, int pageSize = 10)
         {
             List<Movie> movies = new List<Movie>();
             string searchTextlower = searchText.ToLower();
@@ -120,7 +121,7 @@ namespace MyMovie.Controllers
             List<Movie> sortedMovies = new List<Movie>();
             sortedMovies = movies.OrderByDescending(o => o.AverageRating).ToList();
 
-            return sortedMovies.Take(10).AsQueryable();
+            return Paggination.PagedResult(sortedMovies, pageNumber, pageSize);
         }
 
         // PUT: api/Movies/5
