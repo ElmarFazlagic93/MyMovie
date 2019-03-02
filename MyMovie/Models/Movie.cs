@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMovie.Models
 {
@@ -22,7 +24,11 @@ namespace MyMovie.Models
 
         public virtual ICollection<Rating> Rating { get; set; }
 
-        public int TypeId { get; set; }
+        public int ShowTypeId { get; set; }
         public virtual ShowType ShowType { get; set; }
+
+        [JsonIgnore]
+        [NotMapped]
+        public double AverageRating { set; get; }
     }
 }

@@ -208,6 +208,22 @@
     <Compile Include="Migrations\201902272148470_AddType12.Designer.cs">
       <DependentUpon>201902272148470_AddType12.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903011638105_MovieEdit.cs" />
+    <Compile Include="Migrations\201903011638105_MovieEdit.Designer.cs">
+      <DependentUpon>201903011638105_MovieEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903011726402_MovieEdit1.cs" />
+    <Compile Include="Migrations\201903011726402_MovieEdit1.Designer.cs">
+      <DependentUpon>201903011726402_MovieEdit1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903011730160_MovieEdit2.cs" />
+    <Compile Include="Migrations\201903011730160_MovieEdit2.Designer.cs">
+      <DependentUpon>201903011730160_MovieEdit2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903011733090_MovieEdit3.cs" />
+    <Compile Include="Migrations\201903011733090_MovieEdit3.Designer.cs">
+      <DependentUpon>201903011733090_MovieEdit3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Rating.cs" />
@@ -252,6 +268,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902272148470_AddType12.resx">
       <DependentUpon>201902272148470_AddType12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903011638105_MovieEdit.resx">
+      <DependentUpon>201903011638105_MovieEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903011726402_MovieEdit1.resx">
+      <DependentUpon>201903011726402_MovieEdit1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903011730160_MovieEdit2.resx">
+      <DependentUpon>201903011730160_MovieEdit2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903011733090_MovieEdit3.resx">
+      <DependentUpon>201903011733090_MovieEdit3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

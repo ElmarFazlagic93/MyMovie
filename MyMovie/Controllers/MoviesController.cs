@@ -1,5 +1,6 @@
 ﻿using MyMovie.Data;
 using MyMovie.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -18,7 +19,7 @@ namespace MyMovie.Controllers
         // GET: api/Movies
         public IQueryable<Movie> GetMovies()
         {
-            return db.Movies.Include(r => r.Rating).Include(s => s.Stars);
+            return db.Movies.Include(r => r.Rating).Include(s => s.Stars).Include(t => t.ShowType);
         }
 
         // GET: api/Movies/5
@@ -39,7 +40,48 @@ namespace MyMovie.Controllers
         [Route("api/Movies/ByType/{typeId}")]
         public IQueryable<Movie> GetMoviebyType(int typeId)
         {
-            return db.Movies.Where(x => x.TypeId == typeId).Include(r => r.Rating).Include(s => s.Stars);
+            return db.Movies.Where(x => x.ShowTypeId == typeId).Include(r => r.Rating).Include(s => s.Stars);
+        }
+
+        // GET: api/Movies/GetTop10Movies/
+        [ResponseType(typeof(IQueryable<Movie>))]
+        [Route("api/Movies/GetTop10Movies")]
+        public IQueryable<Movie> GetTop10Movies()
+        {
+            ShowType type = db.ShowTypes.FirstOrDefault(x => x.Name == "Movie");
+            List<Movie> movies = new List<Movie>();
+            movies = db.Movies.Where(x => x.ShowTypeId == type.Id).Include(r => r.Rating).Include(s => s.Stars).ToList();
+
+
+            foreach (var movie in movies)
+            {
+                movie.AverageRating = GetAverageRating(movie.Id);
+            }
+
+            List<Movie> sortedMovies = new List<Movie>();
+            sortedMovies = movies.OrderByDescending(o => o.AverageRating).ToList();
+
+            return sortedMovies.Take(10).AsQueryable();
+        }
+
+        // GET: api/Movies/GetTop10TvShows/
+        [ResponseType(typeof(IQueryable<Movie>))]
+        [Route("api/Movies/GetTop10TvShows")]
+        public IQueryable<Movie> GetTop10TvShows()
+        {
+            ShowType type = db.ShowTypes.FirstOrDefault(x => x.Name == "TV Show");
+            List<Movie> movies = new List<Movie>();
+            movies = db.Movies.Where(x => x.ShowTypeId == type.Id).Include(r => r.Rating).Include(s => s.Stars).ToList();
+
+            foreach (var movie in movies)
+            {
+                movie.AverageRating = GetAverageRating(movie.Id);
+            }
+
+            List<Movie> sortedMovies = new List<Movie>();
+            sortedMovies = movies.OrderByDescending(o => o.AverageRating).ToList();
+
+            return sortedMovies.Take(10).AsQueryable();
         }
 
         // GET: api/Movies/getAverageRating/5
@@ -57,7 +99,7 @@ namespace MyMovie.Controllers
                 sum += rating.RateNumber;
             }
 
-            return double.Parse((sum / ratings.Count).ToString());
+            return Math.Round(double.Parse((sum / ratings.Count).ToString()),2);
         }
 
         // GET: api/Movies/Search/{searchText}
