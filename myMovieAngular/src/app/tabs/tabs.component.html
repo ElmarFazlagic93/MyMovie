@@ -1,0 +1,36 @@
+<input #myInput type="search" (input)="filterItem(myInput.value)" class="form-control" placeholder="Search"
+  style="width: 500px; height: 30px;" autofocus>
+
+<div [hidden]="!isSearch">
+  <app-movies-list [isMovie]="false" [isTop10]="true" [searchResult] = "searchResult"></app-movies-list>
+
+  <button title="loadMore" [hidden]="isEnd" (click)="loadMore(myInput.value)">Load more</button>
+</div>
+
+<div [hidden]="isSearch">
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon style="margin-right:10px" class="example-tab-icon">movie</mat-icon>
+        Top Movies
+      </ng-template>
+      <app-movies-list [isMovie]="true" [isTop10]="true"></app-movies-list>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon style="margin-right:10px" class="example-tab-icon">tv</mat-icon>
+        Top TV Shows
+      </ng-template>
+      <app-movies-list [isMovie]="false" [isTop10]="true"></app-movies-list>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon style="margin-right:10px" class="example-tab-icon">list</mat-icon>
+        All
+      </ng-template>
+      <app-movies-list [isMovie]="false" [isTop10]="false"></app-movies-list>
+    </mat-tab>
+  </mat-tab-group>
+</div>

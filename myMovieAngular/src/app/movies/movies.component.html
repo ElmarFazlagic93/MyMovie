@@ -1,0 +1,29 @@
+<ul>
+
+  <li>
+    <div style="display:flex;
+    flex-direction:row;">
+      <div>
+        <img src="assets/matrix.jpg" style="margin-right:50px" height="200">
+      </div>
+      <div style="align-self: center">
+        <ul>
+          <li> <strong>Title : </strong> {{movie.name}} </li>          
+          <li> <strong>Description : </strong> {{movie.description}}</li>
+          <li style="display:flex; flex-direction:row;">
+            <strong>Cast : </strong>
+            <div *ngFor="let star of movie.stars" style="margin-left:10px">
+                <span style="margin-right:4px">{{ star.fullName }}</span>
+            </div>
+          </li>
+          <li> <strong>Rating : </strong> {{averageRating}} </li>
+
+          <li>
+            <app-rating [hidden]="!ratingVisible" [rating]="rating" [color]="starColor" (ratingUpdated)="onRatingChanged($event)"></app-rating>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+
+</ul>

@@ -1,0 +1,5 @@
+<ul *ngFor="let movie of movies">
+  <Li>
+    <app-movies [movie] = "movie" [ratingVisible] = "!isTop10" ></app-movies>
+  </Li>
+</ul>
