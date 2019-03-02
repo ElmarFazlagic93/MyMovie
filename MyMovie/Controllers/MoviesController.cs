@@ -108,7 +108,19 @@ namespace MyMovie.Controllers
         [HttpGet]
         public IQueryable<Movie> SearchMovies(string searchText)
         {
-            return db.Movies.Where(x => x.Name.Contains(searchText)).Include(r => r.Rating).Include(s => s.Stars);
+            List<Movie> movies = new List<Movie>();
+            string searchTextlower = searchText.ToLower();
+            movies = db.Movies.Where(x => x.Name.ToLower().Contains(searchTextlower) || x.Description.ToLower().Contains(searchTextlower)).Include(r => r.Rating).Include(s => s.Stars).Include(t => t.ShowType).ToList();
+
+            foreach (var movie in movies)
+            {
+                movie.AverageRating = GetAverageRating(movie.Id);
+            }
+
+            List<Movie> sortedMovies = new List<Movie>();
+            sortedMovies = movies.OrderByDescending(o => o.AverageRating).ToList();
+
+            return sortedMovies.Take(10).AsQueryable();
         }
 
         // PUT: api/Movies/5
