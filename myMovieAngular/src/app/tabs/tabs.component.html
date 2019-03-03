@@ -1,8 +1,9 @@
 <input #myInput type="search" (input)="filterItem(myInput.value)" class="form-control" placeholder="Search"
   style="width: 500px; height: 30px;" autofocus>
 
+
 <div [hidden]="!isSearch">
-  <app-movies-list [isMovie]="false" [isTop10]="true" [searchResult] = "searchResult"></app-movies-list>
+  <app-movies-list [isMovie]="false" [isTop10]="true" [searchResult]="searchResult"></app-movies-list>
 
   <button title="loadMore" [hidden]="isEnd" (click)="loadMore(myInput.value)">Load more</button>
 </div>

@@ -17,6 +17,7 @@ import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     ToolbarComponent,
     RatingComponent,
     MoviesListComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

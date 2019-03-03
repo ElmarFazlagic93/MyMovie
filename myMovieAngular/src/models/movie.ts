@@ -11,4 +11,5 @@ export default class Movie {
     stars: Array<Star>;
     rating: Array<Rating>;
     type: ShowType;
+    image: string;
   }

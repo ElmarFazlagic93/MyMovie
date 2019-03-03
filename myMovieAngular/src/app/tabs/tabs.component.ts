@@ -15,6 +15,7 @@ export class TabsComponent implements OnInit {
   pagedData: PagedData;
   pageNumber: number = 1;
   isEnd: boolean = false;
+  token: string;
 
   constructor(private myMovieService: MyMovieService) { }
 

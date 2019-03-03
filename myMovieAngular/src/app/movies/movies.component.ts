@@ -2,6 +2,7 @@ import { Component, OnInit, Input, NgZone } from '@angular/core';
 import Movie from 'src/models/movie';
 import Rating from 'src/models/rating';
 import MyMovieService from 'src/api/my-movie.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movies',
@@ -16,7 +17,7 @@ export class MoviesComponent implements OnInit {
   @Input('movie') movie: Movie;
   @Input('ratingVisible') ratingVisible: boolean;
 
-  constructor(private myMovieService: MyMovieService, private ngZone: NgZone ) { }
+  constructor(private myMovieService: MyMovieService, private ngZone: NgZone, private sanitizer: DomSanitizer) { }
 
   averageRating: object;
 

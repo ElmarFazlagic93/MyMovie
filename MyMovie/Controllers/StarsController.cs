@@ -1,4 +1,5 @@
 ﻿using MyMovie.Data;
+using MyMovie.Helper;
 using MyMovie.Models;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -14,12 +15,14 @@ namespace MyMovie.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [JwtAuthentication]
         // GET: api/Stars
         public IQueryable<Star> GetStars()
         {
             return db.Stars;
         }
 
+        [JwtAuthentication]
         // GET: api/Stars/5
         [ResponseType(typeof(Star))]
         public async Task<IHttpActionResult> GetStar(int id)
@@ -33,6 +36,7 @@ namespace MyMovie.Controllers
             return Ok(star);
         }
 
+        [JwtAuthentication]
         // PUT: api/Stars/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutStar(int id, Star star)
@@ -68,6 +72,7 @@ namespace MyMovie.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [JwtAuthentication]
         // POST: api/Stars
         [ResponseType(typeof(Star))]
         public async Task<IHttpActionResult> PostStar(Star star)
@@ -83,6 +88,7 @@ namespace MyMovie.Controllers
             return CreatedAtRoute("DefaultApi", new { id = star.Id }, star);
         }
 
+        [JwtAuthentication]
         // DELETE: api/Stars/5
         [ResponseType(typeof(Star))]
         public async Task<IHttpActionResult> DeleteStar(int id)

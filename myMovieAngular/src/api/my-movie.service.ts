@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import Rating from 'src/models/rating';
 import PagedData from 'src/models/pagedData';
@@ -13,27 +13,43 @@ export default class MyMovieService {
 
   constructor(private http: HttpClient) { }
 
+  authorize(username: string, password: string) {
+    return this.http.get(this.mymovies_api + "token?username=" + username + "&password=" + password);
+  }
+
   getTopMovies() {
-    return this.http.get(this.mymovies_api + "Movies/GetTop10Movies");
+    var token = JSON.parse(localStorage.getItem('currentUser')).token;
+    const  headers = new  HttpHeaders().set("Authorization", "Bearer " + token);
+    return this.http.get(this.mymovies_api + "Movies/GetTop10Movies/", {headers});
   }
 
   getTopTvShows() {
-    return this.http.get(this.mymovies_api + "Movies/GetTop10TvShows");
+    var token = JSON.parse(localStorage.getItem('currentUser')).token;
+    const  headers = new  HttpHeaders().set("Authorization", "Bearer " + token);
+    return this.http.get(this.mymovies_api + "Movies/GetTop10TvShows/", {headers});
   }
 
   getAllMovies() {
-    return this.http.get(this.mymovies_api + "movies/");
+    var token = JSON.parse(localStorage.getItem('currentUser')).token;
+    const  headers = new  HttpHeaders().set("Authorization", "Bearer " + token);
+    return this.http.get(this.mymovies_api + "movies/", {headers});
   }
 
   searchMovies(searchText: string, pageNumber: number) {
-    return this.http.get(this.mymovies_api + "movies/SearchMovies/" + searchText + "/" + pageNumber + "/" + 10);
+    var token = JSON.parse(localStorage.getItem('currentUser')).token;
+    const  headers = new  HttpHeaders().set("Authorization", "Bearer " + token);
+    return this.http.get(this.mymovies_api + "movies/SearchMovies/" + searchText + "/" + pageNumber + "/" + 10, {headers});
   }
 
   rateMovie(rating: Rating) {
-    return this.http.post<Rating>(this.mymovies_api + "Ratings", rating);
+    var token = JSON.parse(localStorage.getItem('currentUser')).token;
+    const  headers = new  HttpHeaders().set("Authorization", "Bearer " + token);
+    return this.http.post<Rating>(this.mymovies_api + "Ratings/", rating, {headers});
   }
 
   getAverageRating(movieId: number) {
-    return this.http.get(this.mymovies_api + "movies/GetAverageRating/" + movieId);
+    var token = JSON.parse(localStorage.getItem('currentUser')).token;
+    const  headers = new  HttpHeaders().set("Authorization", "Bearer " + token);
+    return this.http.get(this.mymovies_api + "movies/GetAverageRating/" + movieId, {headers});
   }
 }

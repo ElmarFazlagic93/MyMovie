@@ -20,6 +20,8 @@ namespace MyMovie.Models
         [Required]
         public DateTime ReleaseDate { get; set; }
 
+        public string Image { get; set; }
+
         public virtual ICollection<Star> Stars { get; set; }
 
         public virtual ICollection<Rating> Rating { get; set; }

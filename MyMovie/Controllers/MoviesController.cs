@@ -17,6 +17,7 @@ namespace MyMovie.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [JwtAuthentication]
         // GET: api/Movies
         public IQueryable<Movie> GetMovies()
         {
@@ -36,6 +37,7 @@ namespace MyMovie.Controllers
             return Ok(movie);
         }
 
+        [JwtAuthentication]
         // GET: api/Movies/ByType/
         [ResponseType(typeof(IQueryable<Movie>))]
         [Route("api/Movies/ByType/{typeId}")]
@@ -44,6 +46,7 @@ namespace MyMovie.Controllers
             return db.Movies.Where(x => x.ShowTypeId == typeId).Include(r => r.Rating).Include(s => s.Stars);
         }
 
+        [JwtAuthentication]
         // GET: api/Movies/GetTop10Movies/
         [ResponseType(typeof(IQueryable<Movie>))]
         [Route("api/Movies/GetTop10Movies")]
@@ -65,6 +68,7 @@ namespace MyMovie.Controllers
             return sortedMovies.Take(10).AsQueryable();
         }
 
+        [JwtAuthentication]
         // GET: api/Movies/GetTop10TvShows/
         [ResponseType(typeof(IQueryable<Movie>))]
         [Route("api/Movies/GetTop10TvShows")]
@@ -85,6 +89,7 @@ namespace MyMovie.Controllers
             return sortedMovies.Take(10).AsQueryable();
         }
 
+        [JwtAuthentication]
         // GET: api/Movies/getAverageRating/5
         [ResponseType(typeof(double))]
         [Route("api/Movies/GetAverageRating/{movieId}")]
@@ -103,6 +108,7 @@ namespace MyMovie.Controllers
             return Math.Round(double.Parse((sum / ratings.Count).ToString()),2);
         }
 
+        [JwtAuthentication]
         // GET: api/Movies/Search/{searchText}
         [ResponseType(typeof(PagedData<Movie>))]
         [Route("api/Movies/SearchMovies/{searchText}/{pageNumber}/{pageSize}")]
@@ -124,6 +130,7 @@ namespace MyMovie.Controllers
             return Paggination.PagedResult(sortedMovies, pageNumber, pageSize);
         }
 
+        [JwtAuthentication]
         // PUT: api/Movies/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutMovie(int id, Movie movie)
@@ -159,6 +166,7 @@ namespace MyMovie.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [JwtAuthentication]
         // POST: api/Movies
         [ResponseType(typeof(Movie))]
         public async Task<IHttpActionResult> PostMovie(Movie movie)
@@ -174,6 +182,7 @@ namespace MyMovie.Controllers
             return CreatedAtRoute("DefaultApi", new { id = movie.Id }, movie);
         }
 
+        [JwtAuthentication]
         // DELETE: api/Movies/5
         [ResponseType(typeof(Movie))]
         public async Task<IHttpActionResult> DeleteMovie(int id)

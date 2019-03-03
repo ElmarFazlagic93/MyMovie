@@ -179,11 +179,17 @@
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\StarsController.cs" />
+    <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\AddChallengeOnUnauthorizedResult.cs" />
+    <Compile Include="Helper\AuthenticationFailureResult.cs" />
+    <Compile Include="Helper\HttpAuthenticationChallengeContextExtensions.cs" />
+    <Compile Include="Helper\JwtAuthenticationAttribute.cs" />
+    <Compile Include="Helper\JwtManager.cs" />
     <Compile Include="Helper\PagedData.cs" />
     <Compile Include="Helper\Paggination.cs" />
     <Compile Include="Migrations\201902270123480_Initial.cs" />
@@ -225,6 +231,10 @@
     <Compile Include="Migrations\201903011733090_MovieEdit3.cs" />
     <Compile Include="Migrations\201903011733090_MovieEdit3.Designer.cs">
       <DependentUpon>201903011733090_MovieEdit3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903031603500_AddedImage.cs" />
+    <Compile Include="Migrations\201903031603500_AddedImage.Designer.cs">
+      <DependentUpon>201903031603500_AddedImage.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -282,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903011733090_MovieEdit3.resx">
       <DependentUpon>201903011733090_MovieEdit3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903031603500_AddedImage.resx">
+      <DependentUpon>201903031603500_AddedImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

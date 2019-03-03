@@ -1,4 +1,5 @@
 ﻿using MyMovie.Data;
+using MyMovie.Helper;
 using MyMovie.Models;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -14,12 +15,14 @@ namespace MyMovie.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [JwtAuthentication]
         // GET: api/Ratings
         public IQueryable<Rating> GetRatings()
         {
             return db.Ratings;
         }
 
+        [JwtAuthentication]
         // GET: api/Ratings/5
         [ResponseType(typeof(Rating))]
         public async Task<IHttpActionResult> GetRating(int id)
@@ -33,6 +36,7 @@ namespace MyMovie.Controllers
             return Ok(rating);
         }
 
+        [JwtAuthentication]
         // PUT: api/Ratings/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutRating(int id, Rating rating)
@@ -68,6 +72,7 @@ namespace MyMovie.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [JwtAuthentication]
         // POST: api/Ratings
         [ResponseType(typeof(Rating))]
         public async Task<IHttpActionResult> PostRating(Rating rating)
@@ -83,23 +88,7 @@ namespace MyMovie.Controllers
             return CreatedAtRoute("DefaultApi", new { id = rating.Id }, rating);
         }
 
-        // POST: api/Movies/PostRating?rateNumber={rateNumber}/movieId={movieId}
-        //[ResponseType(typeof(Rating))]
-        //[Route("api/Movies/PostRating")]
-        //[HttpPost]
-        //public async Task<IHttpActionResult> PostRating(Rating rating)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    //Rating rating = new Rating { RateNumber = rateNumber, MovieId = movieId };
-        //    db.Ratings.Add(rating);
-        //    await db.SaveChangesAsync();
-
-        //    return Ok(rating);
-        //}
-
+        [JwtAuthentication]
         // DELETE: api/Ratings/5
         [ResponseType(typeof(Rating))]
         public async Task<IHttpActionResult> DeleteRating(int id)

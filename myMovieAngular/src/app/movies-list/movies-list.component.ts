@@ -16,6 +16,7 @@ export class MoviesListComponent implements OnInit {
   @Input('isMovie') isMovie: boolean;
   @Input('isTop10') isTop10: boolean;
   @Input('searchResult') searchResult: Object;
+  @Input('token') token: string;
 
   ngOnChanges() {
     console.log(this.searchResult)
@@ -27,7 +28,6 @@ export class MoviesListComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (!this.isTop10) {
       this.myMovieService.getAllMovies().subscribe(data => {
         this.movies = data;
@@ -46,7 +46,6 @@ export class MoviesListComponent implements OnInit {
         this.movies = data;
       });
     }
-
   }
 
 }

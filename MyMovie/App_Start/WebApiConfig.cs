@@ -20,6 +20,8 @@ namespace MyMovie
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            config.Filters.Add(new AuthorizeAttribute());
+
             // Enable CORS for the Angular App
             var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
             config.EnableCors(cors);
