@@ -16,7 +16,21 @@
                 <span style="margin-right:4px">{{ star.fullName }}</span>
             </div>
           </li>
-          <li> <strong>Rating : </strong> {{averageRating}} </li>
+          <li>  
+          
+            
+
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            <div class="container">
+              <span class="star star-under fa fa-star"></span>
+              <span id="staroverId" [ngStyle]="setMyStyles()" class="star star-over fa fa-star"></span>
+            </div>
+            
+            {{averageRating}} / 5
+            
+          </li>
+
+          
 
           <li>
             <app-rating [hidden]="!ratingVisible" [rating]="rating" [color]="starColor" (ratingUpdated)="onRatingChanged($event)"></app-rating>

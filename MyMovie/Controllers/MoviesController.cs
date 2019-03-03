@@ -21,9 +21,20 @@ namespace MyMovie.Controllers
         // GET: api/Movies
         public IQueryable<Movie> GetMovies()
         {
-            return db.Movies.Include(r => r.Rating).Include(s => s.Stars).Include(t => t.ShowType);
+            try
+            {
+                var test = db.Movies.Include(r => r.Rating).Include(s => s.Stars).Include(t => t.ShowType).ToList();
+                return db.Movies.Include(r => r.Rating).Include(s => s.Stars).Include(t => t.ShowType);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
         }
 
+        [JwtAuthentication]
         // GET: api/Movies/5
         [ResponseType(typeof(Movie))]
         public async Task<IHttpActionResult> GetMovie(int id)

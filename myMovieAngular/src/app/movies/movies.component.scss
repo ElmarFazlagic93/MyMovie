@@ -1,0 +1,19 @@
+$color_1: #ddd;
+$color_2: #f80;
+
+.container {
+	font-size: 50px;
+	position: relative;
+	display: inline-block;
+}
+.star-under {
+	color: $color_1;
+	vertical-align: top;
+}
+.star-over {
+	color: $color_2;
+	position: absolute;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+}
